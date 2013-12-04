@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+    @ingredients = Ingredient.all.collect { |p| [ p.name, p.id ]}
   end
 
   # GET /recipes/1/edit
@@ -25,6 +26,14 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
+
+    params[:recipe][:ingredients].each do |ingredient_id|
+      next if ingredient_id.to_i == 0
+
+      ingredient = Ingredient.find(ingredient_id.to_i)
+
+      @recipe.ingredients << ingredient
+    end
 
     respond_to do |format|
       if @recipe.save
@@ -69,6 +78,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :process, :vegetarian)
+      params.require(:recipe).permit(:name, :description, :process, :vegetarian, :ingredients =>{})
     end
 end

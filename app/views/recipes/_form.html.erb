@@ -27,6 +27,9 @@
     <%= f.label :vegetarian %><br>
     <%= f.check_box :vegetarian %>
   </div>
+
+  <%= f.select(:ingredients, @ingredients, {:include_blank=>true}, {:multiple=>true}) %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
