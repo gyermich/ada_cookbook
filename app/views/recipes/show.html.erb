@@ -20,5 +20,11 @@
   <%= @recipe.vegetarian %>
 </p>
 
+<p>
+  <strong>Ingredients:</strong>
+  <% @recipe.ingredients.each do |ingredient| %>
+  <%= ingredient.name %>
+  <%end%>
+
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
