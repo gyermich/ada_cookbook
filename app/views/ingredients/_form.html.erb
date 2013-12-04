@@ -1,0 +1,49 @@
+<%= form_for(@ingredient) do |f| %>
+  <% if @ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+
+      <ul>
+      <% @ingredient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :vegetarian %><br>
+    <%= f.check_box :vegetarian %>
+  </div>
+  <div class="field">
+    <%= f.label :nuts %><br>
+    <%= f.check_box :nuts %>
+  </div>
+  <div class="field">
+    <%= f.label :dairy %><br>
+    <%= f.check_box :dairy %>
+  </div>
+  <div class="field">
+    <%= f.label :soy%><br>
+    <%= f.check_box :soy %>
+  </div>
+  <div class="field">
+    <%= f.label :gluten%><br>
+    <%= f.check_box :gluten %>
+  </div>
+  <div class="field">
+    <%= f.label :corn %><br>
+    <%= f.check_box :corn %>
+  </div>
+  <div class="field">
+    <%= f.label :seafood %><br>
+    <%= f.check_box :seafood %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
