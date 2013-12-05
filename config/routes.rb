@@ -1,4 +1,6 @@
 AdaCookbook::Application.routes.draw do
+  resources :gadgets
+
   resources :cookbooks
 
   resources :ingredients

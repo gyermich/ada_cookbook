@@ -47,6 +47,16 @@ class CookbooksController < ApplicationController
     end
   end
 
+  def remove_recipe_from_cookbook
+    params[:cookbook][:recipes].each do |recipe_id|
+      next if recipe_id.to_i == 0
+
+      recipe = Recipe.find(recipe_id.to_i)
+
+      @cookbook.recipes.delete(recipe)
+    end
+  end
+
   # PATCH/PUT /cookbooks/1
   # PATCH/PUT /cookbooks/1.json
   def update
