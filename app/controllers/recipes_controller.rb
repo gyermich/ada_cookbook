@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :remove_ingredient_from_recipe, :remove_gadget_from_recipe]
 
   # GET /recipes
   # GET /recipes.json
@@ -84,7 +84,17 @@ class RecipesController < ApplicationController
       render action: 'edit' 
     end
   end
+  
+  def remove_ingredient_from_recipe
+   IngredientsRecipe.find_by(:recipe_id =>params[:id], :ingredient_id => params[:ingredient_id]).destroy
+   redirect_to @recipe, notice: 'Recipe was successfully updated.' 
+  end
 
+
+  def remove_gadget_from_recipe
+   GadgetsRecipe.find_by(:recipe_id =>params[:id], :gadget_id => params[:gadget_id]).destroy
+   redirect_to @recipe, notice: 'Recipe was successfully updated.' 
+  end
   # DELETE /recipes/1
   # DELETE /recipes/1.json
   def destroy

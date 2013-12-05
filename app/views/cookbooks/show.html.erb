@@ -15,7 +15,6 @@
   <% @cookbook.recipes.each do |recipe| %>
     <%= link_to "#{recipe.name}", recipe_path(recipe) %>
     <%= button_to "delete", remove_recipe_path(@cookbook.id, recipe.id), :method => :delete %>
-
   <%end%>
 </p>
 
