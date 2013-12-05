@@ -1,5 +1,5 @@
 class CookbooksController < ApplicationController
-  before_action :set_cookbook, only: [:show, :edit, :update, :destroy]
+  before_action :set_cookbook, only: [:show, :edit, :update, :destroy, :remove_recipe_from_cookbook]
 
   # GET /cookbooks
   # GET /cookbooks.json
@@ -48,13 +48,8 @@ class CookbooksController < ApplicationController
   end
 
   def remove_recipe_from_cookbook
-    params[:cookbook][:recipes].each do |recipe_id|
-      next if recipe_id.to_i == 0
-
-      recipe = Recipe.find(recipe_id.to_i)
-
-      @cookbook.recipes.delete(recipe)
-    end
+   RecipesCookbook.find_by(:cookbook_id =>params[:id], :recipe_id => params[:recipe_id]).destroy
+   redirect_to @cookbook, notice: 'Cookbook was successfully updated.' 
   end
 
   # PATCH/PUT /cookbooks/1

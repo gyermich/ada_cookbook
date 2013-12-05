@@ -13,11 +13,13 @@
 <p>
   <strong>Recipes:</strong>
   <% @cookbook.recipes.each do |recipe| %>
-  <%= link_to "#{recipe.name}", recipe_path(recipe) %>
+    <%= link_to "#{recipe.name}", recipe_path(recipe) %>
+    <%= button_to "delete", remove_recipe_path(@cookbook.id, recipe.id), :method => :delete %>
+
   <%end%>
 </p>
 
-<%= button_to "delete", url_for(:controller => 'cookbook', :action => 'remove_recipe_from_cookbook', :cookbook => @cookbook, :recipe => @recipe), :method => :delete %>
+
 
 <%= link_to 'Edit', edit_cookbook_path(@cookbook) %> |
 <%= link_to 'Back', cookbooks_path %>

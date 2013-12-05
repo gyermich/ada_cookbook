@@ -59,32 +59,29 @@ class RecipesController < ApplicationController
 
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
+
   def update    
-    respond_to do |format|
-      if @recipe.update(recipe_params)
-        
-        params[:recipe][:ingredients].each do |ingredient_id|
-          next if ingredient_id.to_i == 0
+    if @recipe.update(recipe_params)
+      
+      params[:recipe][:ingredients].each do |ingredient_id|
+        next if ingredient_id.to_i == 0
 
-          ingredient = Ingredient.find(ingredient_id.to_i)
+        ingredient = Ingredient.find(ingredient_id.to_i)
 
-          @recipe.ingredients << ingredient
+        @recipe.ingredients << ingredient
+      end
+
+       params[:recipe][:gadgets].each do |gadget_id|
+         next if gadget_id.to_i == 0
+
+          gadget = Gadget.find(gadget_id.to_i)
+
+          @recipe.gadgets << gadget
         end
 
-         params[:recipe][:gadgets].each do |gadget_id|
-           next if gadget_id.to_i == 0
-
-            gadget = Gadget.find(gadget_id.to_i)
-
-            @recipe.gadgets << gadget
-          end
-
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
+      redirect_to @recipe, notice: 'Recipe was successfully updated.'
+    else
+      render action: 'edit' 
     end
   end
 

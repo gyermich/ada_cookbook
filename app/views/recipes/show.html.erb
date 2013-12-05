@@ -22,16 +22,20 @@
 
 <p>
   <strong>Ingredients:</strong>
-  <% @recipe.ingredients.each do |ingredient| %>
-  <%= ingredient.name %>
-  <%end%>
+  <ul>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <li><%= ingredient.name %></li>
+    <%end%>
+  </ul>
 </p>
 
 <p>
   <strong>Gadgets:</strong>
-  <% @recipe.gadgets.each do |gadget| %>
-  <%= gadget.name %>
-  <%end%>
+  <ul>
+    <% @recipe.gadgets.each do |gadget| %>
+      <li><%= gadget.name %></li>
+    <%end%>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
