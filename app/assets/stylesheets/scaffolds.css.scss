@@ -4,66 +4,46 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  background-image:url('/dinner_table_large.jpg');
+  background-size:100%;
+  background-repeat:no-repeat;
+  font-variant:small-caps;
+}
+
+h1, h3 {
+  text-align:center;
 }
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
-  line-height: 18px;
+}
+ul.users {
+  width:100%;
+  align:center;
+  text-align: center;
+  background-color:rgba(188,167,159,.8);
 }
 
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
+ul.users li {
+  display: inline-block;
+  padding: 5px;
+  font-weight: bold;
 }
 
-a {
-  color: #000;
-  &:visited {
-    color: #666;
-  }
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
+ul.users li a {
+color:#fff;
+  
 }
 
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
-  }
+
+#new_user {
+  text-align:center;
 }
 
-#notice {
-  color: green;
+#new_user a{
+  color:#ed4609;
+  font-size: 20px;
+  font-weight:bold;
 }
 
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}
-
-#error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px;
-    margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
-  }
-  ul li {
-    font-size: 12px;
-    list-style: square;
-  }
-}
