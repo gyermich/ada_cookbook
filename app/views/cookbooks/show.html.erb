@@ -10,5 +10,13 @@
   <%= User.find(id=@cookbook.user_id)[:name] %>
 </p>
 
+<p>
+  <strong>Recipes:</strong>
+  <% @cookbook.recipes.each do |recipe| %>
+  <%= link_to "#{recipe.name}", recipe_path(recipe) %>
+  <%end%>
+</p>
+
+
 <%= link_to 'Edit', edit_cookbook_path(@cookbook) %> |
 <%= link_to 'Back', cookbooks_path %>

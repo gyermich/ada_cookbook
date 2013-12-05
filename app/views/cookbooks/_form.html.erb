@@ -19,6 +19,9 @@
     <%= f.label :user_id %><br>
     <%= f.number_field :user_id %>
   </div>
+
+  <%= f.select(:recipes, @recipes, {}, {:multiple=>true}) %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
