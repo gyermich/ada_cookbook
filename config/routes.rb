@@ -7,6 +7,8 @@ AdaCookbook::Application.routes.draw do
 
   resources :users
 
+  get '/cookbooks/remove_recipe_from_cookbook/:id', :controller => 'cookbook', :action => 'remove_recipe_from_cookbook'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
