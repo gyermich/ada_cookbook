@@ -13,7 +13,7 @@
 <p>
   <strong>Cookbooks:</strong>
   <ul>
-    <% @user.cookbook.each do |cookbook| %>
+    <% @user.cookbooks.each do |cookbook| %>
       <li>   
         <%= link_to "#{cookbook.name}", cookbook_path(cookbook) %>
         <%= button_to "delete", remove_cookbook_path(@user.id, cookbook.id), :method => :delete %>
