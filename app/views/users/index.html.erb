@@ -1,6 +1,8 @@
+
 <h1>Welcome, Joooooolia Child! </h1>
 
-<h3>Extraodinary Chefs Using Extraordinary Cookbook Apps</h3>
+<h3>Extraordinary Chefs Using Extraordinary Cookbook Apps</h3>
+
 
 <ul class= 'users'>
   <% @users.each do |user| %>
@@ -9,7 +11,8 @@
 </ul>
 
 <br>
-<ul id='new_user'>
-  <li><%= link_to 'I want to be an extraordinary chef!', new_user_path %></li>
-  <li> <%= link_to 'I want to get extraordinary cookbooks!', cookbooks_path %></li>
-</ul>
+<p id='new_user'>
+  <%= link_to 'I want to be an extraordinary chef!', new_user_path %>
+</p>
+
+

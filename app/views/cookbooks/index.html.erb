@@ -1,29 +1,27 @@
-<h1>Listing cookbooks</h1>
+  <h1>Listing cookbooks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cookbooks.each do |cookbook| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= cookbook.name %></td>
-        <td><%= User.find(id=cookbook.user_id)[:name] %></td>
-        <td><%= link_to 'Show', cookbook %></td>
-        <td><%= link_to 'Edit', edit_cookbook_path(cookbook) %></td>
-        <td><%= link_to 'Destroy', cookbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>User</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @cookbooks.each do |cookbook| %>
+        <tr>
+          <td><%= cookbook.name %></td>
+          <td><%= User.find(id=cookbook.user_id)[:name] %></td>
+          <td><%= link_to 'Show', cookbook %></td>
+          <td><%= link_to 'Edit', edit_cookbook_path(cookbook) %></td>
+          <td><%= link_to 'Delete', cookbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Cookbook', new_cookbook_path %>
+  <br>
+
+  <%= link_to 'New Cookbook', new_cookbook_path %>
+

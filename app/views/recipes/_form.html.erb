@@ -28,7 +28,7 @@
     <%= f.check_box :vegetarian %>
   </div>
   <p>Ingredients:</p>
-  <%= f.select(:ingredients, @ingredients, {:include_blank=>true}, {:multiple=>true}) %>
+  <%= f.select(:ingredients, @ingredients, {selected: @recipe.ingredients.collect {|i| i.id}}, {:multiple=>true}) %>
   <p>Gadgets:</p>
   <%= f.select(:gadgets, @gadgets, {:include_blank=>true}, {:multiple=>true}) %>
 
