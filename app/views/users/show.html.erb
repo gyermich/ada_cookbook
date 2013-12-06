@@ -10,6 +10,19 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <strong>Cookbooks:</strong>
+  <ul>
+    <% @user.cookbook.each do |cookbook| %>
+      <li>   
+        <%= link_to "#{cookbook.name}", cookbook_path(cookbook) %>
+        <%= button_to "delete", remove_cookbook_path(@user.id, cookbook.id), :method => :delete %>
+      </li>
+    <%end%>
+  </ul>
+</p>
+
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %> |
 <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>

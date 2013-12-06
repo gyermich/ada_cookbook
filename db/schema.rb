@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205185004) do
+ActiveRecord::Schema.define(version: 20131206002327) do
 
   create_table "cookbooks", force: true do |t|
     t.string   "name"
@@ -72,6 +72,11 @@ ActiveRecord::Schema.define(version: 20131205185004) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users_cookbooks", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
