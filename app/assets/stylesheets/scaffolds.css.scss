@@ -4,27 +4,32 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
-  background-image:url('/dinner_table_large.jpg');
-  background-size:100%;
-  background-repeat:no-repeat;
-  font-variant:small-caps;
-  margin:0;
+  background-image: url('/dinner_table_large.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  font-variant: small-caps;
+  margin: 0;
   padding: 0;
 }
 
 h1, h3 {
-  text-align:center;
+  text-align: center;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
 }
 
 /*Navigation menu*/
 .header {
-
   background: #4A4A4A;
 }
 
 .nav-links{
-  margin:0;
+  margin: 0;
 }
+
 .home a {
   color: #D5D5D5;
   text-decoration: none;
@@ -60,14 +65,11 @@ ul li {
   background-color: #4A4A4A;
 }
 
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-}
+/*Users Page*/
 ul.users {
-  width:100%;
+  width: 100%;
   text-align: center;
-  background-color:rgba(188,167,159,.8);
+  background-color: rgba(188,167,159,.8);
   padding: 0;
 }
 
@@ -78,35 +80,34 @@ ul.users li {
 }
 
 ul.users li a {
-color:#fff;
+color: #fff;
 }
 
-
 #new_user {
-  text-align:center;
+  text-align: center;
 }
 
 #new_user a{
-  color:#ed4609;
+  color: #ed4609;
   font-size: 20px;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 /*Other Pages*/
 .pages {
-  text-align:center;
+  text-align: center;
 }
 
 .pages ul li.ing_link {
-  display:block;
+  display: block;
 }
 
 .ing_link > form{
-  display:inline-block;
+  display: inline-block;
 }
 
 table {
   margin: auto; 
-  text-align:left;
+  text-align: left;
 }
 
