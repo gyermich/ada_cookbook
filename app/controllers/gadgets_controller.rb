@@ -25,7 +25,6 @@ class GadgetsController < ApplicationController
   # POST /gadgets.json
   def create
     @gadget = Gadget.new(gadget_params)
-
     respond_to do |format|
       if @gadget.save
         format.html { redirect_to @gadget, notice: 'Gadget was successfully created.' }

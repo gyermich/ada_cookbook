@@ -15,27 +15,19 @@ class CookbooksController < ApplicationController
   # GET /cookbooks/new
   def new
     @cookbook = Cookbook.new
-    @recipes = Recipe.all.collect { |p| [ p.name, p.id ] }
+    recipes_list
   end
 
   # GET /cookbooks/1/edit
   def edit
-    @recipes = Recipe.all.collect { |p| [ p.name, p.id ] }
+    recipes_list
   end
 
   # POST /cookbooks
   # POST /cookbooks.json
   def create
     @cookbook = Cookbook.new(cookbook_params)
-
-    params[:cookbook][:recipes].each do |recipe_id|
-      next if recipe_id.to_i == 0
-
-      recipe = Recipe.find(recipe_id.to_i)
-
-      @cookbook.recipes << recipe
-    end
-
+    cookbook_recipes
     respond_to do |format|
       if @cookbook.save
         format.html { redirect_to @cookbook, notice: 'Cookbook was successfully created.' }
@@ -57,13 +49,7 @@ class CookbooksController < ApplicationController
   def update
     respond_to do |format|
       if @cookbook.update(cookbook_params)
-        params[:cookbook][:recipes].each do |recipe_id|
-          next if recipe_id.to_i == 0
-
-          recipe = Recipe.find(recipe_id.to_i)
-
-          @cookbook.recipes << recipe
-        end
+        cookbook_recipes
         format.html { redirect_to @cookbook, notice: 'Cookbook was successfully updated.' }
         format.json { head :no_content }
       else
@@ -92,5 +78,19 @@ class CookbooksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cookbook_params
       params.require(:cookbook).permit(:name, :user_id, :recipes => {})
+    end
+
+    # Creates an array of all recipes
+    def recipes_list
+      @recipes = Recipe.all.collect { |p| [ p.name, p.id ] }
+    end
+
+    # Creates an array of recipes in a cookbook
+    def cookbook_recipes
+      params[:cookbook][:recipes].each do |recipe_id|
+        next if recipe_id.to_i == 0
+        recipe = Recipe.find(recipe_id.to_i)
+        @cookbook.recipes << recipe
+      end
     end
 end

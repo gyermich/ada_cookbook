@@ -15,27 +15,19 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @coobooks = Cookbook.all.collect { |p| [ p.name, p.id ]}
+    cookbooks_list
   end
 
   # GET /users/1/edit
   def edit
-    @coobooks = Cookbook.all.collect { |p| [ p.name, p.id ]}
+    cookbooks_list
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-      params[:user][:cookbooks].each do |cookbook_id|
-        next if cookbook_id.to_i == 0
-
-        cookbook = Cookbook.find(cookbook_id.to_i)
-
-        @user.cookbooks << cookbook
-      end
-
+    user_cookbooks
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -51,15 +43,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update    
     if @user.update(user_params)
-      
-      params[:user][:cookbooks].each do |cookbook_id|
-        next if cookbook_id.to_i == 0
-
-        cookbook = Cookbook.find(cookbook_id.to_i)
-
-        @user.cookbooks << cookbook
-      end
-
+      user_cookbooks
       redirect_to @user, notice: 'profile was successfully updated.'
     else
       render action: 'edit' 
@@ -89,7 +73,20 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-
       params.require(:user).permit(:name, :email,)
+    end
+
+    # Creates an array of all cookbooks
+    def cookbooks_list
+      @coobooks = Cookbook.all.collect { |p| [ p.name, p.id ]}
+    end
+
+    # Creates an array of User's cookbooks
+    def user_cookbooks
+       params[:user][:cookbooks].each do |cookbook_id|
+        next if cookbook_id.to_i == 0
+        cookbook = Cookbook.find(cookbook_id.to_i)
+        @user.cookbooks << cookbook
+      end
     end
 end

@@ -97,8 +97,12 @@ color:#fff;
   text-align:center;
 }
 
-.pages ul li{
-  display:inline;
+.pages ul li.ing_link {
+  display:block;
+}
+
+.ing_link > form{
+  display:inline-block;
 }
 
 table {

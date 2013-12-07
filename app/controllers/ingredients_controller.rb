@@ -25,7 +25,6 @@ class IngredientsController < ApplicationController
   # POST /ingredients.json
   def create
     @ingredient = Ingredient.new(ingredient_params)
-
     respond_to do |format|
       if @ingredient.save
         format.html { redirect_to @ingredient, notice: 'Ingredient was successfully created.' }
@@ -69,6 +68,6 @@ class IngredientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredient_params
-      params.require(:ingredient).permit(:name, :vegetarian, :dairy, :nuts)
+      params.require(:ingredient).permit(:name, :vegetarian, :dairy, :nuts, :soy, :gluten, :corn, :seafood)
     end
 end

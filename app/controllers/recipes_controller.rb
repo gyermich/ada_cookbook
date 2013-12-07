@@ -15,14 +15,14 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
-    @ingredients = Ingredient.all.collect { |p| [ p.name, p.id ]}
-    @gadgets = Gadget.all.collect { |p| [ p.name, p.id ]}
+    ingredients_list
+    gadgets_list
   end
 
   # GET /recipes/1/edit
   def edit
-    @ingredients = Ingredient.all.collect { |p| [ p.name, p.id ]}
-    @gadgets = Gadget.all.collect { |p| [ p.name, p.id ]}
+    ingredients_list
+    gadgets_list
   end
 
   # POST /recipes
@@ -30,21 +30,8 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
 
-    params[:recipe][:ingredients].each do |ingredient_id|
-      next if ingredient_id.to_i == 0
-
-      ingredient = Ingredient.find(ingredient_id.to_i)
-
-      @recipe.ingredients << ingredient
-    end
-
-    params[:recipe][:gadgets].each do |gadget_id|
-      next if gadget_id.to_i == 0
-
-      gadget = Gadget.find(gadget_id.to_i)
-
-      @recipe.gadgets << gadget
-    end
+    recipe_ingredients
+    recipe_gadgets
 
     respond_to do |format|
       if @recipe.save
@@ -62,23 +49,8 @@ class RecipesController < ApplicationController
 
   def update    
     if @recipe.update(recipe_params)
-      
-      params[:recipe][:ingredients].each do |ingredient_id|
-        next if ingredient_id.to_i == 0
-
-        ingredient = Ingredient.find(ingredient_id.to_i)
-
-        @recipe.ingredients << ingredient
-      end
-
-       params[:recipe][:gadgets].each do |gadget_id|
-         next if gadget_id.to_i == 0
-
-          gadget = Gadget.find(gadget_id.to_i)
-
-          @recipe.gadgets << gadget
-        end
-
+      recipe_ingredients
+      recipe_gadgets
       redirect_to @recipe, notice: 'Recipe was successfully updated.'
     else
       render action: 'edit' 
@@ -114,5 +86,33 @@ class RecipesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
       params.require(:recipe).permit(:name, :description, :process, :vegetarian, :ingredients =>{}, :gadgets =>{})
+    end
+
+    # Creates an array of all ingredients
+    def ingredients_list
+     @ingredients = Ingredient.all.collect { |p| [ p.name, p.id ]}
+    end
+
+    # Creates an array of all gadgets
+    def gadgets_list
+     @gadgets = Gadget.all.collect { |p| [ p.name, p.id ]}
+    end
+
+    # Creates an array of ingredients in a recipe
+    def recipe_ingredients
+      params[:recipe][:ingredients].each do |ingredient_id|
+        next if ingredient_id.to_i == 0
+        ingredient = Ingredient.find(ingredient_id.to_i)
+        @recipe.ingredients << ingredient
+      end
+    end
+
+    # Creates an array of gadgets in a recipe
+    def recipe_gadgets
+      params[:recipe][:gadgets].each do |gadget_id|
+        next if gadget_id.to_i == 0
+        gadget = Gadget.find(gadget_id.to_i)
+        @recipe.gadgets << gadget
+      end
     end
 end

@@ -22,7 +22,7 @@
   <strong>Ingredients:</strong>
   <ul>
     <% @recipe.ingredients.each do |ingredient| %>
-      <li>   
+      <li class="ing_link">   
         <%= link_to "#{ingredient.name}", ingredient_path(ingredient) %>
         <%= button_to "delete", remove_ingredient_path(@recipe.id, ingredient.id), :method => :delete %>
       </li>
@@ -34,7 +34,7 @@
   <strong>Gadgets:</strong>
   <ul>
     <% @recipe.gadgets.each do |gadget| %>
-      <li>
+      <li class="ing_link">
         <%= link_to "#{gadget.name}", gadget_path(gadget) %>
         <%= button_to "delete", remove_gadget_path(@recipe.id, gadget.id), :method => :delete %>
       </li>
