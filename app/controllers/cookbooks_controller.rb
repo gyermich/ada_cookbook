@@ -27,7 +27,9 @@ class CookbooksController < ApplicationController
   # POST /cookbooks.json
   def create
     @cookbook = Cookbook.new(cookbook_params)
-    cookbook_recipes
+    if !params[:cookbooks][:recipes].nil?
+      cookbook_recipes
+    end
     respond_to do |format|
       if @cookbook.save
         format.html { redirect_to @cookbook, notice: 'Cookbook was successfully created.' }

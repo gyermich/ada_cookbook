@@ -15,8 +15,13 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
-    ingredients_list
-    gadgets_list
+    if !params[:recipe][:ingredients].nil?
+      ingredients_list
+    end
+
+    if params[:recipe][:ingredients].nil?
+      gadgets_list
+    end
   end
 
   # GET /recipes/1/edit
