@@ -27,7 +27,9 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    user_cookbooks
+    if !params[:user][:cookbooks].nil?
+      user_cookbooks
+    end
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
